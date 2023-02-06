@@ -24,7 +24,7 @@ public class SplunkConfiguration {
             actuatorPoller.setServerPort(Integer.parseInt(env.getProperty("server.port", "8080")));
             actuatorPoller.setSourcetype(env.getProperty("springboot.actuator.splunk.sourcetype", "actuator"));
             actuatorPoller.setEventCollectorUrl(env.getRequiredProperty("springboot.actuator.splunk.eventCollectorUrl"));
-            actuatorPoller.setEndpoints(env.getProperty("springboot.actuator.splunk.endpoints", "metrcs,health").split(","));
+            actuatorPoller.setEndpoints(env.getProperty("springboot.actuator.splunk.endpoints", "metrics,health").split(","));
             actuatorPoller.setManagementContextPath(env.getProperty("springboot.actuator.splunk.management.context-path", ""));
             actuatorPoller.setAuthorization(env.getRequiredProperty("springboot.actuator.splunk.authorization"));
         }
