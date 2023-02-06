@@ -15,14 +15,20 @@ public class SplunkConfiguration {
 
     @Bean
     public ActuatorPoller actuatorPoller() {
-        ActuatorPoller actuatorPoller = new ActuatorPoller();
-        actuatorPoller.setPoll(Long.parseLong(env.getProperty("springboot.actuator.splunk.port", "60000")));
-        actuatorPoller.setServerPort(Integer.parseInt(env.getProperty("server.port", "8080")));
-        actuatorPoller.setSourcetype(env.getProperty("springboot.actuator.splunk.sourcetype", "actuator"));
-        actuatorPoller.setEventCollectorUrl(env.getRequiredProperty("springboot.actuator.splunk.eventCollectorUrl"));
-        actuatorPoller.setEndpoints(env.getProperty("springboot.actuator.splunk.endpoints", "metrcs,health").split(","));
-        actuatorPoller.setManagementContextPath(env.getProperty("springboot.actuator.splunk.management.context-path", ""));
-        actuatorPoller.setAuthorization(env.getRequiredProperty("springboot.actuator.splunk.authorization"));
+        boolean enabled = Boolean.parseBool(env.getProperty("springboot.actuator.splunk.enabled", "true")));
+        ActuatorPoller actuatorPoller = null;
+
+        if (enabled) {
+            actuatorPoller = new ActuatorPoller();
+            actuatorPoller.setPoll(Long.parseLong(env.getProperty("springboot.actuator.splunk.port", "60000")));
+            actuatorPoller.setServerPort(Integer.parseInt(env.getProperty("server.port", "8080")));
+            actuatorPoller.setSourcetype(env.getProperty("springboot.actuator.splunk.sourcetype", "actuator"));
+            actuatorPoller.setEventCollectorUrl(env.getRequiredProperty("springboot.actuator.splunk.eventCollectorUrl"));
+            actuatorPoller.setEndpoints(env.getProperty("springboot.actuator.splunk.endpoints", "metrcs,health").split(","));
+            actuatorPoller.setManagementContextPath(env.getProperty("springboot.actuator.splunk.management.context-path", ""));
+            actuatorPoller.setAuthorization(env.getRequiredProperty("springboot.actuator.splunk.authorization"));
+        }
+
         return actuatorPoller;
     }
 }
