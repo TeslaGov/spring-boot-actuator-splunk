@@ -7,9 +7,6 @@ buildscript {
     repositories {
         jcenter()
     }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
-    }
 }
 
 
@@ -18,7 +15,6 @@ repositories {
 }
 
 dependencies {
-    compile 'com.google.code.gson:gson:1.7.2'
-    compile ('org.springframework.boot:spring-boot-starter-web:1.4.1.RELEASE')
-    //compile 'org.springframework.boot:spring-boot-starter-actuator:1.4.1.RELEASE'
+    compileOnly 'com.google.code.gson:gson:1.7.2'
+    compileOnly 'org.springframework.boot:spring-boot-starter-web:1.4.1.RELEASE'
 }
